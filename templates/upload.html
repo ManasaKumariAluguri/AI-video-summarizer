@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Video</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>🎬 Video AI Analyzer</h1>
+    <p>Upload your video to generate AI summary</p>
+
+     <form method="POST" enctype="multipart/form-data" class="upload-box" onsubmit="showLoader()">
+    
+    <input type="file" name="video" accept="video/*" required>
+
+    <button type="submit" id="uploadBtn">Upload & Analyze</button>
+
+    <!-- Loader -->
+    <div id="loader" class="loader hidden"></div>
+    <p id="loadingText" class="hidden">Processing your video... ⏳</p>
+
+</form>
+
+<script>
+function showLoader() {
+    document.getElementById("loader").classList.remove("hidden");
+    document.getElementById("loadingText").classList.remove("hidden");
+    document.getElementById("uploadBtn").disabled = true;
+}
+</script>
+</div>
+
+</body>
+</html>

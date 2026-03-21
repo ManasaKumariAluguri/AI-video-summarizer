@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>📊 Video Analysis Result</h1>
+
+    <div class="summary-box">
+    <h2>🧠 AI Summary</h2>
+    <p class="summary-text">{{ summary }}</p>
+</div>
+
+    <h2>📸 Extracted Frames</h2>
+
+    <div class="frames-container">
+        {% for i in range(0, 300, 30) %}
+            <img src="/outputs/frames/frame_{{i}}.jpg" class="frame">
+        {% endfor %}
+    </div>
+
+    <br>
+    <a href="/" class="back-btn">⬅ Upload Another Video</a>
+
+</div>
+
+</body>
+</html>
