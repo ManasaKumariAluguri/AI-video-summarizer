@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Results</title>
+    <title>Video Summary</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
-<div class="container">
-
-    <h1>📊 Video Analysis Result</h1>
-
-    <div class="summary-box">
-    <h2>🧠 AI Summary</h2>
-    <p class="summary-text">{{ summary }}</p>
-</div>
-
-    <h2>📸 Extracted Frames</h2>
-
-    <div class="frames-container">
-        {% for i in range(0, 300, 30) %}
-            <img src="/outputs/frames/frame_{{i}}.jpg" class="frame">
+<main class="app-shell report-shell">
+    <section class="report-hero">
+        <p class="eyebrow">VIDEO SUMMARY</p>
+        <h1>A detailed view of<br><em>what matters most.</em></h1>
+        <div class="report-meta">
+            <span>✦ {{ evidence|length }} distinct key moments</span>
+            <span>{{ "✦ speech included" if transcript_available else "✦ visual analysis" }}</span>
+            <a href="/outputs/{{ analysis_id }}/analysis.json" download>Download saved result ↓</a>
+        </div>
+    </section>
+    <section class="summary-box final-summary">
+        <div class="section-label"><span>01</span> FINAL SUMMARY</div>
+        <p class="summary-text">{{ summary }}</p>
+        <p class="evidence-note">{{ "This summary combines the spoken content with the selected visual moments." if transcript_available else "This summary is grounded in the selected visual moments; no usable speech transcript was available." }}</p>
+    </section>
+    <section class="moments-section">
+        <div class="section-heading">
+            <div><p class="section-label"><span>02</span> KEY MOMENTS</p><h2>Distinct scenes, in sequence.</h2></div>
+            <p>Near-duplicate frames are filtered before analysis.</p>
+        </div>
+        <div class="frames-container">
+        {% for item in evidence %}
+            <figure class="evidence-card">
+                <img src="/outputs/{{ analysis_id }}/{{ item.filename }}" class="frame" alt="Video frame at {{ item.time_label }}">
+                <figcaption><strong>{{ item.time_label }}</strong><span>Key moment {{ loop.index }}</span></figcaption>
+            </figure>
         {% endfor %}
-    </div>
-
-    <br>
-    <a href="/" class="back-btn">⬅ Upload Another Video</a>
-
-</div>
+        </div>
+    </section>
+</main>
 
 </body>
 </html>

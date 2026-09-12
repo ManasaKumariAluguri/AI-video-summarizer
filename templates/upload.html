@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Upload Video</title>
+    <title>Video Summarizer</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
-<div class="container">
-    <h1>🎬 Video AI Analyzer</h1>
-    <p>Upload your video to generate AI summary</p>
-
-     <form method="POST" enctype="multipart/form-data" class="upload-box" onsubmit="showLoader()">
-    
-    <input type="file" name="video" accept="video/*" required>
-
-    <button type="submit" id="uploadBtn">Upload & Analyze</button>
-
-    <!-- Loader -->
-    <div id="loader" class="loader hidden"></div>
-    <p id="loadingText" class="hidden">Processing your video... ⏳</p>
-
-</form>
+<main class="app-shell centered-page">
+    <section class="upload-layout">
+        <div class="intro-copy">
+            <p class="eyebrow">VIDEO UNDERSTANDING</p>
+            <h1>Turn your video into a<br><em>clear, detailed story.</em></h1>
+            <p class="lede">Upload a video to receive one grounded summary, built from the most meaningful moments instead of repeated frames.</p>
+            <div class="feature-list"><span>Distinct key moments</span><span>Detailed final summary</span><span>Saved results</span></div>
+        </div>
+        <form method="POST" enctype="multipart/form-data" class="upload-box" onsubmit="showLoader()">
+            <label for="video" class="drop-zone"><span class="upload-mark">↑</span><strong>Choose a video</strong><small>MP4, MOV, AVI and more</small></label>
+            <input id="video" type="file" name="video" accept="video/*" required>
+            <button type="submit" id="uploadBtn">Analyze video <span>→</span></button>
+            <div id="loader" class="loader hidden"></div>
+            <p id="loadingText" class="hidden">Finding key moments and preparing your summary…</p>
+        </form>
+    </section>
+</main>
 
 <script>
 function showLoader() {
